@@ -22,6 +22,9 @@ INSTALLED_APPS = [
 
     # Third Party packages
     'django_ckeditor_5',
+    'mptt',
+    'rest_framework',
+    'drf_spectacular',
 
 ]
 
@@ -192,3 +195,5 @@ CKEDITOR_5_CONFIGS = {
         }
     }
 }
+
+from root.drf_settings import *
