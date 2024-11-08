@@ -1,5 +1,5 @@
 from django.db.models import Model, PositiveIntegerField, ForeignKey, CASCADE, EmailField, ImageField, TextChoices, \
-    CharField, SmallIntegerField, BooleanField
+    CharField, SmallIntegerField, BooleanField, URLField
 from django_ckeditor_5.fields import CKEditor5Field
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -64,3 +64,8 @@ class Payment(Model):
 class Image(Model):
     image = ImageField(upload_to='images/product/')
     product = ForeignKey('apps.Product', on_delete=CASCADE, related_name='images')
+
+
+class SiteSettings(Model):
+    instagram = URLField()
+    telegram = URLField()
