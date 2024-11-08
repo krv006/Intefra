@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'django_ckeditor_5',
     'mptt',
     'rest_framework',
+    'django_filters',
     'drf_spectacular',
 
 ]
