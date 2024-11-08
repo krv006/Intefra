@@ -1,5 +1,5 @@
 from django.db.models import Model, PositiveIntegerField, ForeignKey, CASCADE, EmailField, ImageField, TextChoices, \
-    CharField, SmallIntegerField, BooleanField, URLField
+    CharField, SmallIntegerField, BooleanField, URLField, TextField
 from django_ckeditor_5.fields import CKEditor5Field
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -69,3 +69,11 @@ class Image(Model):
 class SiteSettings(Model):
     instagram = URLField()
     telegram = URLField()
+
+
+class Quick_order(Model):
+    name = CharField(max_length=255)
+    description = TextField()
+    price = PositiveIntegerField(null=True, blank=True, default=0)
+    discount = PositiveIntegerField(null=True, blank=True, default=0)
+    size = CharField(max_length=255, choices=Product.Size.choices, null=True, blank=True, db_default=Product.Size.F50)
