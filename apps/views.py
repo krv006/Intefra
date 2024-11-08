@@ -1,3 +1,5 @@
+from ctypes.wintypes import tagMSG
+
 from drf_spectacular.utils import extend_schema
 from rest_framework.generics import ListCreateAPIView
 
@@ -12,6 +14,7 @@ class CategoryListCreateAPIView(ListCreateAPIView):
 
 
 @extend_schema(tags=['product'])
+@extend_schema(description='product')
 class ProductListCreateAPIView(ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListModelSerializer

@@ -1,5 +1,5 @@
 from django.db.models import Model, PositiveIntegerField, ForeignKey, CASCADE, EmailField, ImageField, TextChoices, \
-    CharField
+    CharField, SmallIntegerField, BooleanField
 from django_ckeditor_5.fields import CKEditor5Field
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -23,12 +23,20 @@ class Product(Model):
         F54 = '54', '54'
         F56 = '56', '56'
 
+    class Poll(TextChoices):
+        MALE = 'Male', 'male'
+        FEMALE = 'Female', 'female'
+
     name = CharField(max_length=255)
     price = PositiveIntegerField(default=0)
     description = CKEditor5Field()
-    sale = PositiveIntegerField(default=0)
+    discount_price = SmallIntegerField(default=0, null=True, blank=True)
     size = CharField(max_length=2, choices=Size.choices, default=Size.F50)
+    poll = CharField(max_length=10, choices=Poll.choices, default=Poll.MALE)
     category = ForeignKey('apps.Category', CASCADE, related_name='products')
+
+    # TODO discount_price mana shuni kiritganda nechi foiz sale boletganini xam chiqazib berishi kerak -> ustozdan sorimiz
+    # TODO sale nechi foiz kiritganda shunda summasini ozi aftamatik olishi kerak -> ustozdan sorimiz
 
 
 class Address(Model):
@@ -45,6 +53,14 @@ class Brand(Model):
     image = ImageField(upload_to='images/brand/')
 
 
+class Payment(Model):
+    name = CharField(max_length=255)
+    surname = CharField(max_length=255)
+    delivery_home = BooleanField(default=True)
+    SDEK_pickup_point = BooleanField(default=False)
+    region = CharField(max_length=255)
+
+
 class Image(Model):
-    image = ImageField(upload_to='images/')
+    image = ImageField(upload_to='images/product/')
     product = ForeignKey('apps.Product', on_delete=CASCADE, related_name='images')
