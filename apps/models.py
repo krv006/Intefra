@@ -40,13 +40,19 @@ class Product(Model):
 
 
 class Address(Model):
-    name = CharField(max_length=255)
-    surname = CharField(max_length=255)
-    city = CharField(max_length=255)
+    class Type(TextChoices):
+        HOME = 'Доставка на дом', 'доставка на дом'
+        FILIAL = 'Пункт выдачи СДЭК', 'пункт выдачи СДЭК'
+        RUSSIAN = 'Россия', 'pоссия'
+
+    first_name = CharField(max_length=100)
+    last_name = CharField(max_length=100)
+    city = CharField(max_length=100)
+    home_number = CharField(max_length=100)
+    deliver_place = CharField(max_length=100, choices=Type.choices, default=Type.RUSSIAN)
     email = EmailField()
-    home_number = PositiveIntegerField(db_default=0)
-    phone_number = CharField(max_length=255)
-    description = CKEditor5Field()
+    phone_number = CharField(max_length=100)
+    description = TextField()
 
 
 class Brand(Model):
