@@ -14,3 +14,7 @@ migdel:
 
 pip:
 	pip freeze > requirements.txt
+
+
+celery:
+	celery -A root worker -l INFO

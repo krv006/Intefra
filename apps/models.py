@@ -3,6 +3,10 @@ from django.db.models import Model, PositiveIntegerField, ForeignKey, CASCADE, E
 from django_ckeditor_5.fields import CKEditor5Field
 from mptt.models import MPTTModel, TreeForeignKey
 
+from django.contrib.auth.models import AbstractUser
+
+from managers import CustomUserManager
+
 
 class Category(MPTTModel):
     name = CharField(max_length=255)
@@ -84,3 +88,15 @@ class SiteSettings(Model):
 class QuickOrder(Model):
     name = CharField(max_length=255)
     phone_number = CharField(max_length=255)
+
+
+class User(AbstractUser):
+    username = None
+    first_name = None
+    last_name = None
+    email = EmailField(unique=True)
+    name = CharField(max_length=255)
+    is_active = BooleanField(default=False)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+    objects = CustomUserManager()
