@@ -6,13 +6,13 @@ from apps.models import Category, Product
 
 
 class ProductFilter(FilterSet):
-    category_name = CharFilter(field_name="category__name", lookup_expr='icontains')
+    category_name = CharFilter(field_name="category__name", lookup_expr='icontains')  # todo category name filter
     min_price = NumberFilter(field_name="price", lookup_expr='gte')
     max_price = NumberFilter(field_name="price", lookup_expr='lte')
 
     class Meta:
         model = Product
-        fields = 'category',
+        fields = 'category',  # todo category id filter
 
 
 class CategoryFilter(FilterSet):

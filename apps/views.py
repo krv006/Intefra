@@ -20,7 +20,7 @@ class CategoryListCreateAPIView(ListCreateAPIView):
 class ProductListCreateAPIView(ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListModelSerializer
-    ordering = 'price',
+    ordering = 'price', '-created_at',
     # TODO mana shu yerda created_at di qoshsa eng yangi eng eski -created_at shunaqa qilish kerak boaldi
     search_fields = 'name', 'description',
     filterset_class = ProductFilter

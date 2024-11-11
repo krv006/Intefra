@@ -11,3 +11,6 @@ flush:
 migdel:
 	find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
 	find . -path "*/migrations/*.pyc"  -delete
+
+pip:
+	pip freeze > requirements.txt

@@ -33,6 +33,9 @@ class Product(Model):
     discount_price = SmallIntegerField(default=0, null=True, blank=True)
     size = CharField(max_length=2, choices=Size.choices, default=Size.F50)
     poll = CharField(max_length=10, choices=Poll.choices, default=Poll.MALE)
+    material = CharField(max_length=255, null=True, blank=True)
+    lining = CharField(max_length=255, null=True, blank=True)  # todo podkladka
+    made_from = CharField(max_length=255, null=True, blank=True)
     category = ForeignKey('apps.Category', CASCADE, related_name='products')
 
     # TODO discount_price mana shuni kiritganda nechi foiz sale boletganini xam chiqazib berishi kerak -> ustozdan sorimiz
@@ -77,7 +80,7 @@ class SiteSettings(Model):
     telegram = URLField()
 
 
-class Quick_order(Model):
+class QuickOrder(Model):
     name = CharField(max_length=255)
     description = TextField()
     price = PositiveIntegerField(null=True, blank=True, default=0)
