@@ -1,5 +1,3 @@
-from ctypes.wintypes import tagMSG
-
 from drf_spectacular.utils import extend_schema
 from rest_framework.generics import ListCreateAPIView
 

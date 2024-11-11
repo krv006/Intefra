@@ -1,5 +1,5 @@
 from django.db.models import Count
-from django_filters import NumberFilter, CharFilter
+from django_filters import NumberFilter, CharFilter, ChoiceFilter
 from django_filters.rest_framework import FilterSet
 
 from apps.models import Category, Product
@@ -9,10 +9,12 @@ class ProductFilter(FilterSet):
     category_name = CharFilter(field_name="category__name", lookup_expr='icontains')  # todo category name filter
     min_price = NumberFilter(field_name="price", lookup_expr='gte')
     max_price = NumberFilter(field_name="price", lookup_expr='lte')
+    poll = ChoiceFilter(choices=Product.Poll.choices)
+    size = ChoiceFilter(choices=Product.Size.choices)
 
     class Meta:
         model = Product
-        fields = 'category',  # todo category id filter
+        fields = 'category', 'poll', 'size',  # todo category id filter
 
 
 class CategoryFilter(FilterSet):

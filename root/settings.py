@@ -1,7 +1,13 @@
 import os
+import sys
 from pathlib import Path
 
+# from dotenv import load_dotenv
+#
+# load_dotenv()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(os.path.join(BASE_DIR, 'apps'))  # todo when your project have more apps
 
 SECRET_KEY = 'django-insecure-*lkz$!!g%kj@8(7geocm)39n_+ncap$gut2sroq2os44!%a&%7'
 
@@ -20,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My Apps
-    'apps.apps.AppsConfig',
+    'apps',
 
     # Third Party packages
     'django_ckeditor_5',

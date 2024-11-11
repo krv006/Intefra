@@ -59,6 +59,7 @@ class Address(Model):
 
 
 class Brand(Model):
+    name = CharField(max_length=255)
     image = ImageField(upload_to='images/brand/')
 
 
@@ -82,7 +83,4 @@ class SiteSettings(Model):
 
 class QuickOrder(Model):
     name = CharField(max_length=255)
-    description = TextField()
-    price = PositiveIntegerField(null=True, blank=True, default=0)
-    discount = PositiveIntegerField(null=True, blank=True, default=0)
-    size = CharField(max_length=255, choices=Product.Size.choices, null=True, blank=True, db_default=Product.Size.F50)
+    phone_number = CharField(max_length=255)
